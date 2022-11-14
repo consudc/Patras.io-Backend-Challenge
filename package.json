@@ -1,0 +1,45 @@
+{
+  "name": "patras.io-backend-challenge",
+  "description": "[Open Weather  Map API](https://openweathermap.org/current#home) es un proyecto que entrega informacion sobre el clima en una ciudad determinada. Utilizando PostgreSQL, Node.js y Express, crear un servicio REST (API) que acumule informacion sobre el clima de una ciudad.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/consudc/Patras.io-Backend-Challenge.git"
+  },
+  "keywords": [],
+  "author": "Consuelo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/consudc/Patras.io-Backend-Challenge/issues"
+  },
+  "homepage": "https://github.com/consudc/Patras.io-Backend-Challenge#readme",
+  "dependencies": {
+    "axios": "^1.1.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.25.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.7.1"
+  }
+}
