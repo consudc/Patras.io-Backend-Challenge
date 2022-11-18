@@ -17,4 +17,9 @@ const sequelize = new Sequelize(
   }
 );
 
+// const sequelize = new Sequelize(POSTGRESQL_DB, DB_USER, DB_PASSWORD, {
+//   host: DB_HOST,
+//   dialect: "postgres",
+// });
+
 module.exports = sequelize;

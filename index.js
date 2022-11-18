@@ -1,9 +1,9 @@
 require("dotenv").config();
 
-const app = require("./app");
-const sequelize = require("./database/database");
+const app = require("./src/app");
+const sequelize = require("./src/database/database");
 
-require("./models/Aeropuertos");
+require("./src/models/Aeropuertos");
 
 // const { PORT } = process.env;
 
