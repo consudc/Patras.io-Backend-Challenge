@@ -52,11 +52,9 @@ const getAeropuerto = async (req = request, res = response) => {
     });
 
     if (code) {
-      // const aerop = aeropuertos.find((a) => a.code.toUppercase() === code.toUpperCase());
       const aerop = aeropuertos.filter((a) =>
         a.code.toUpperCase().includes(code.toUpperCase())
       );
-      //   console.log(aerop);
 
       if (aerop.length) {
         return res.status(200).json({

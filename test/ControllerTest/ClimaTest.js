@@ -1,30 +1,27 @@
-const { assert, expect } = require("chai");
-const should = require("chai").should();
-const axios = require("axios");
+const { expect } = require("chai");
 
-const {
-  getAllCities,
-  getClimatebyCode,
-} = require("../../src/controllers/clima");
+const axios = require("axios");
 
 // Results
 
 const SERVER = "http://localhost:3000/api/v1/aeropuertos/";
 
+// eslint-disable-next-line no-undef
 describe("API REST CONTROL", () => {
   // eslint-disable-next-line no-undef
   it("GET /debe devolver todos los aeropuertos", async () => {
     const response = await axios(`${SERVER}`);
     expect(response.status).to.equal(200);
-})
+  });
 
+  // eslint-disable-next-line no-undef
   it("GET /debe devolver todos los aeropuertos en forma de array", async () => {
     const response = await axios(`${SERVER}`);
     const aeropuertos = await response.data;
     expect(aeropuertos).to.be.an("Array");
   });
-  // eslint-disable-next-line no-restricted-syntax
 
+  // eslint-disable-next-line no-undef
   it("GET /cada aeropuerto es un objeto", async () => {
     const response = await axios(`${SERVER}`);
     const aeropuertos = await response.data;

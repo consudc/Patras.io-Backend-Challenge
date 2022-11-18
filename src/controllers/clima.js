@@ -4,7 +4,6 @@ const Aeropuertos = require("../models/Aeropuertos");
 
 const { YOUR_API_KEY } = process.env;
 
-// eslint-disable-next-line consistent-return
 const getAllCities = async (req = request, res = response) => {
   try {
     const aeropuertos = await Aeropuertos.findAll();
@@ -30,7 +29,6 @@ const getAllCities = async (req = request, res = response) => {
         return array;
       });
       res.status(200).json(tempActual);
-      // el resultado está en la propiedad data del objeto devuelto
     });
   } catch (error) {
     console.log(error);
@@ -41,9 +39,9 @@ const getAllCities = async (req = request, res = response) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
-const getClimatebyCode = async (req = request, res = response) => {
-  const { desde, frecuencia } = req.query;
+// eslint-disable-next-line consistent-return, default-param-last
+const getClimatebyCode = async (req = request, res = response, next) => {
+  const { frecuencia } = req.query;
   const { code } = req.params;
   const codeUpper = code.toUpperCase();
 
@@ -56,19 +54,14 @@ const getClimatebyCode = async (req = request, res = response) => {
       const WeatherResponse = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${YOUR_API_KEY}&units=metric`
       );
-
-      // const { timezone } = WeatherResponse.data;
-      // const timezoneTotal = timezone * 1000;
       const dia = new Date(Date.now()).toLocaleString();
-      // .toISOString()
-      // .slice(0, 19);
+
       const temperatureactual = {
         temp_actual: WeatherResponse.data.main.temp,
         temp_max: WeatherResponse.data.main.temp_max,
         temp_min: WeatherResponse.data.main.temp_min,
         ciudad: WeatherResponse.data.name,
         dia: dia,
-        // dia: new Date(WeatherResponse.data.dt * 1000).toLocaleString(),
       };
 
       if (frecuencia) {
@@ -79,7 +72,7 @@ const getClimatebyCode = async (req = request, res = response) => {
           temperatura: WeatherForecast.data.list[7].main.temp,
           dia: new Date(
             WeatherForecast.data.list[7].dt * 1000
-          ).toLocaleString(),
+          ).toLocaleDateString(),
         };
 
         if (frecuencia === "diaria") {
@@ -97,25 +90,25 @@ const getClimatebyCode = async (req = request, res = response) => {
               temperatura: WeatherForecast.data.list[15].main.temp,
               dia: new Date(
                 WeatherForecast.data.list[15].dt * 1000
-              ).toLocaleString(),
+              ).toLocaleDateString(),
             },
             temperatureDia4: {
               temperatura: WeatherForecast.data.list[23].main.temp,
               dia: new Date(
                 WeatherForecast.data.list[23].dt * 1000
-              ).toLocaleString(),
+              ).toLocaleDateString(),
             },
             temperatureDia5: {
               temperatura: WeatherForecast.data.list[31].main.temp,
               dia: new Date(
                 WeatherForecast.data.list[31].dt * 1000
-              ).toLocaleString(),
+              ).toLocaleDateString(),
             },
             temperatureDia6: {
               temperatura: WeatherForecast.data.list[39].main.temp,
               dia: new Date(
                 WeatherForecast.data.list[39].dt * 1000
-              ).toLocaleString(),
+              ).toLocaleDateString(),
             },
           });
         }

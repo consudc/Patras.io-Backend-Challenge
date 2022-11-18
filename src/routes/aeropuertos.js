@@ -1,9 +1,5 @@
 const { Router } = require("express");
-
-// const Aeropuertos = require("../models/Aeropuertos");
 const { addAeropuerto, getAeropuerto } = require("../controllers/aeropuertos");
-
-// require("dotenv").config();
 
 const router = Router();
 
