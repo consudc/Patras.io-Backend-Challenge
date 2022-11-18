@@ -1,38 +1,24 @@
-const axios = require(`axios`);
+require("dotenv").config();
+
 const app = require("./app");
+const sequelize = require("./database/database");
 
-const YOUR_API_KEY = "0f4c4e86820fa3c53972023f91deab2b";
+require("./models/Aeropuertos");
 
-app.listen(3000);
-console.log("listening to port 3000");
+// const { PORT } = process.env;
 
-// Buenos Aires (Aeropuerto Ezeiza) SAEZ
-// Mendoza (aeropuerto de la capital) SAME /Santiago de Chile (Aeropuerto Arturo Benitez) SCEL
-
-const findApi = async () => {
+async function main() {
   try {
-    const primeraPag = (
-      await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=${YOUR_API_KEY}`
-      )
-    ).data;
-
-    console.log(primeraPag.list[2]);
-
-    // (`https://api.openweathermap.org/data/2.5/weather?q=york&appid=
-    // ${YOUR_API_KEY}`)).data
-    // return primeraPag
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+    sequelize.sync({ force: false }).then(() => {
+      app.listen(app.get("port"), () => {
+        console.log("Listen on port", app.get("port")); // eslint-disable-line no-console
+      });
+    });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log("Error en la petición", error);
-    throw error;
+    console.error("Unable to connect to the database:", error);
   }
-};
+}
 
-findApi();
-
-const GMT3 = 10800000;
-
-const dia = new Date(Date.now() - GMT3).toISOString().slice(0, 19);
-
-console.log(dia);
+main();
